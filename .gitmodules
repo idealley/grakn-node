@@ -1,0 +1,3 @@
+[submodule "features/grakn-spec"]
+	path = features/grakn-spec
+	url = git@github.com:graknlabs/grakn-spec.git
