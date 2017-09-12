@@ -13,7 +13,7 @@ function GraknGraph(uri = DEFAULT_URI , keyspace = DEFAULT_KEYSPACE){
 // Execute Graql query against the graph
 GraknGraph.prototype.execute = function(query, infer = true, materialise= false){
     var options = {
-        uri: 'http://'+this.uri+'/kb/graql/execute', 
+        uri: 'http://'+this.uri+'/graph/graql/execute', 
         qs: params(this.keyspace, infer, materialise), 
         headers: {'Accept': 'application/graql+json'},
         body: query,

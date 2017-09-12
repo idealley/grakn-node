@@ -8,7 +8,7 @@
     "url": "https://github.com/graknlabs/grakn-node"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cucumber.js"
+    "test": "./node_modules/.bin/cucumber.js --tags \"not @skip\""
   },
   "dependencies": {
     "request": "^2.81.0",
