@@ -31,10 +31,9 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
         var context = this;
         this.graph.execute(query)
         .then(function(response){
-            console.log("EHI RESPONSE "+response);
-            context.response = response;
+            context.response = JSON.parse(response);
             callback();
-        }).catch(function(error){            
+        }).catch(function(error){
             context.error=error.message;
             callback();
         });
@@ -45,15 +44,15 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
     });
   
     Then(/^the response is `(.*)`$/, function (response, callback) {
-        expect(this.response).to.equal(response.toLowerCase());
+
+        expect(this.response).to.equal(response);
     });
 
     Then(/^the response has (\d+|no) results?/, function(cardinality){
-        var responseLength = JSON.parse(this.response).length;
         if(cardinality==='no'){
-            expect(responseLength).to.equal(0);
+            expect(this.response.length).to.equal(0);
         }else{
-            expect(responseLength).to.equal(parseInt(cardinality));
+            expect(this.response.length).to.equal(parseInt(cardinality));
         }
     });
 
@@ -68,6 +67,9 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
       Then(/return a response with (new|existing) concepts/, function (type) {
         expect(this.response).to.be.not.empty;        
       });
+      Then('the response is empty', function () {
+        expect(this.response).to.be.empty;        
+    });
   });
  
     
