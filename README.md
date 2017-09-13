@@ -20,14 +20,12 @@ Begin by importing the Grakn graph:
 
 ```
 >>> var GraknGraph = require('grakn-node');
-
 ```
 
 Now you can connect to a graph:
 
 ```
 >>> var graph = new GraknGraph('http://localhost:4567', 'keyspace');
-
 ```
 
 You can write to the graph:
@@ -41,7 +39,6 @@ You can write to the graph:
 []
 >>> graph.execute('insert $bob isa person, has name "Bob";')
 ['1234']
-
 ```
 
 Or read from it:
@@ -49,5 +46,4 @@ Or read from it:
 ```
 >>> graph.execute('match $bob isa person, has name $name; select $name;')
 [{'name': {'isa': 'name', 'id': '3141816', 'value': 'Bob'}}]
-
 ```
