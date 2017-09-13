@@ -1,9 +1,9 @@
 {
   "name": "grakn-node",
   "version": "0.0.1",
-  "graknVersion":"0.16.0",
+  "graknVersion": "0.16.0",
   "description": "Grakn Node.js Client",
-  "main":"src/GraknGraph.js",
+  "main": "src/GraknGraph.js",
   "author": "Grakn Labs",
   "homepage": "https://grakn.ai",
   "repository": {
@@ -11,7 +11,8 @@
     "url": "https://github.com/graknlabs/grakn-node"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cucumber.js --tags \"not @skip\""
+    "test": "./node_modules/.bin/cucumber.js --tags \"not @skip\"",
+    "unit-test": "./node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "request": "^2.81.0",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "cucumber": "^3.0.1"
+    "cucumber": "^3.0.1",
+    "jest": "^21.0.2"
   }
 }
