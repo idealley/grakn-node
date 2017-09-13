@@ -31,19 +31,41 @@ Now you can connect to a graph:
 You can write to the graph:
 
 ```
->>> graph.execute('insert person sub entity;')
+>>> graph.execute('insert person sub entity;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert name sub resource, datatype string;')
+>>> graph.execute('insert name sub resource, datatype string;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert person has name;')
+>>> graph.execute('insert person has name;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert $bob isa person, has name "Bob";')
+>>> graph.execute('insert $bob isa person, has name "Bob";').then((resp) => { console.log(resp); });
 ['1234']
 ```
 
 Or read from it:
 
 ```
->>> graph.execute('match $bob isa person, has name $name; select $name;')
+>>> graph.execute('match $bob isa person, has name $name; select $name;').then((resp) => { console.log(resp); });
 [{'name': {'isa': 'name', 'id': '3141816', 'value': 'Bob'}}]
 ```
+
+
+# API Reference
+
+#### `GraknGraph([uri],[keyspace])`
+
+Constructor function that accepts two optional parameters:
+
+- **uri**: default `http://localhost:4567`. URI of running graph.
+- **keyspace**: default `grakn`. Keyspace name.
+
+---
+
+#### `execute(query, [infer, materialise])`
+
+It executes query against the running graph. It returns a Promise.
+
+It accepts two optional parameters:
+
+- **infer**: default is **true**. Determine if inference must be used for the current query.
+- **materialise**: default is **false**. Determine if inferred results must be persisted in the graph.
+---
