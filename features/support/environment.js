@@ -1,13 +1,13 @@
 var { spawnSync } = require('child_process');
 var { StringDecoder } = require('string_decoder');
 var decoder = new StringDecoder('utf8');
-var version = require('../../package.json').version;
+var version = require('../../package.json').graknVersion;
 
 var scriptPath = './features/grakn-spec/env.sh';
 
 module.exports = {
     beforeAll: function(){
-        var process = spawnSync(scriptPath, ['start',version], {stdio:[0,1,2]});
+        var process = spawnSync(scriptPath, ['start', version], {stdio:[0,1,2]});
         if(process.status!=0) {
             var err = Buffer.from(process.output[2]);            
             console.log('Failed to start test environment: '+decoder.write(err));

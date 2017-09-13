@@ -15,12 +15,12 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
 
 
     Given('a broken connection to the database', function () {
-      this.graph = new Grakn('0.1.2.3:3289');
+      this.graph = new Grakn('http://0.1.2.3:3289');
     });
 
     Given(/a graph/, function () {
       var name = environment.newKeyspace().trim().replace(/(\r\n|\n|\r)/gm,"");
-      this.graph = new Grakn('127.0.0.1:4567', name);
+      this.graph = new Grakn('http://127.0.0.1:4567', name);
     });
 
     Given(/^(ontology|data) `(.*)`$/, function (type, patterns) {
