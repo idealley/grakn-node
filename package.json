@@ -2,7 +2,9 @@
   "name": "grakn-node",
   "version": "0.16.0",
   "description": "Grakn Node.js Client",
-  "private": false,
+  "main":"src/GraknGraph.js",
+  "author": "Grakn Labs",
+  "homepage": "https://grakn.ai",
   "repository": {
     "type": "git",
     "url": "https://github.com/graknlabs/grakn-node"

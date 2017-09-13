@@ -1,4 +1,4 @@
-var Grakn = require('../../src/GraknClient');
+var Grakn = require('../../src/GraknGraph');
 var {defineSupportCode} = require('cucumber');
 var expect = require('chai').expect;
 var environment = require('../support/environment');
