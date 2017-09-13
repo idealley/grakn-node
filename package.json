@@ -1,6 +1,6 @@
 {
   "name": "grakn-node",
-  "version": "0.0.1",
+  "version": "0.16.0",
   "description": "Grakn Node.js Client",
   "private": false,
   "repository": {

@@ -27,7 +27,7 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
        environment.insert(patterns);
      });
     
-    When(/the user issues `(.*)`/, function (query, callback) {
+    When(/the user issues `(.*)`/, {timeout: 10 * 1000}, function (query, callback) {
         var context = this;
         this.graph.execute(query)
         .then(function(response){
@@ -36,15 +36,17 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
         }).catch(function(error){
             context.error=error.message;
             callback();
-        });
+        });        
     });
     
     Then('return an error', function () {
          expect(this.error).to.be.not.an('undefined');
     });
   
-    Then(/^the response is `(.*)`$/, function (response, callback) {
-
+    Then(/^the response is `(.*)`$/, function (response) {
+        if(response==='True')response=true;
+        else if(response==='False')response=false;
+        else response=JSON.parse(response);
         expect(this.response).to.equal(response);
     });
 
@@ -56,7 +58,7 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
         }
     });
 
-    Then('the type {string} is in the graph', function (label, callback) {
+    Then(/the type "(.*)" is in the graph/, function (label) {
         environment.checkType(label);
     });
 
@@ -68,7 +70,7 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
         expect(this.response).to.be.not.empty;        
       });
       Then('the response is empty', function () {
-        expect(this.response).to.be.empty;        
+        expect(this.response).to.equal(null);        
     });
   });
  
