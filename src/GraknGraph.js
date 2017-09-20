@@ -1,10 +1,10 @@
 const request = require('request-promise-native');
 
-var DEFAULT_URI = 'http://localhost:4567';
-var DEFAULT_KEYSPACE = 'grakn';
-var EXECUTE_WEBPATH = '/graph/graql/execute';
+const DEFAULT_URI = 'http://localhost:4567';
+const DEFAULT_KEYSPACE = 'grakn';
+const EXECUTE_WEBPATH = '/graph/graql/execute';
 
-var uri,keyspace;
+let uri, keyspace;
 
 function Graph(uri = DEFAULT_URI , keyspace = DEFAULT_KEYSPACE){
     this.uri = uri;
@@ -12,15 +12,13 @@ function Graph(uri = DEFAULT_URI , keyspace = DEFAULT_KEYSPACE){
 }
 
 // Execute Graql query against the graph
-Graph.prototype.execute = function(query, infer = true, materialise= false){
-    var options = {
-        uri: this.uri + EXECUTE_WEBPATH, 
+Graph.prototype.execute = function(query, infer = true, materialise = false){
+    return request.post({
+        uri: `${this.uri}${EXECUTE_WEBPATH}`, 
         qs: params(this.keyspace, infer, materialise), 
         headers: {'Accept': 'application/graql+json'},
         body: query,
-    };
-
-    return request.post(options);
+    });
 }
 
 function params(keyspace, infer, materialise){

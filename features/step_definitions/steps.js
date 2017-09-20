@@ -1,7 +1,7 @@
-var Grakn = require('../../src/GraknGraph');
-var {defineSupportCode} = require('cucumber');
-var expect = require('chai').expect;
-var environment = require('../support/environment');
+const Grakn = require('../../src/GraknGraph');
+const {defineSupportCode} = require('cucumber');
+const expect = require('chai').expect;
+const environment = require('../support/environment');
 
 defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
     BeforeAll(function () {
@@ -13,13 +13,12 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
         return Promise.resolve()
     });
 
-
     Given('a broken connection to the database', function () {
       this.graph = new Grakn('http://0.1.2.3:3289');
     });
 
     Given(/a graph/, function () {
-      var name = environment.newKeyspace().trim().replace(/(\r\n|\n|\r)/gm,"");
+      const name = environment.newKeyspace().trim().replace(/(\r\n|\n|\r)/gm,"");
       this.graph = new Grakn('http://127.0.0.1:4567', name);
     });
 
@@ -28,7 +27,7 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
      });
     
     When(/the user issues `(.*)`/, {timeout: 10 * 1000}, function (query, callback) {
-        var context = this;
+        const context = this;
         this.graph.execute(query)
         .then(function(response){
             context.response = JSON.parse(response);
@@ -44,18 +43,13 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
     });
   
     Then(/^the response is `(.*)`$/, function (response) {
-        if(response==='True')response=true;
-        else if(response==='False')response=false;
-        else response=JSON.parse(response);
-        expect(this.response).to.equal(response);
+        const expected = (response==='True') ? true : ((response==='False') ? false : JSON.parse(response));
+        expect(this.response).to.equal(expected);
     });
 
     Then(/^the response has (\d+|no) results?/, function(cardinality){
-        if(cardinality==='no'){
-            expect(this.response.length).to.equal(0);
-        }else{
-            expect(this.response.length).to.equal(parseInt(cardinality));
-        }
+        const expected = (cardinality==='no') ? 0 : parseInt(cardinality);
+        expect(this.response.length).to.equal(expected);
     });
 
     Then(/the type "(.*)" is in the graph/, function (label) {
@@ -64,12 +58,13 @@ defineSupportCode(function({Given, When, Then, AfterAll, BeforeAll}) {
 
     Then(/the instance with (.*) "(.*)" is in the graph/, function (resourceLabel, value) {
         environment.checkInstance(resourceLabel,value);
-      });
+    });
 
-      Then(/return a response with (new|existing) concepts/, function (type) {
+    Then(/return a response with (new|existing) concepts/, function (type) {
         expect(this.response).to.be.not.empty;        
-      });
-      Then('the response is empty', function () {
+    });
+    
+    Then('the response is empty', function () {
         expect(this.response).to.equal(null);        
     });
   });
