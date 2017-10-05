@@ -9,7 +9,7 @@ Requires Grakn 0.16.0
 To install the Grakn client, simply run:
 
 ```
-npm install grakn-node
+npm install grakn
 ```
 
 You will also need access to a Grakn database. Head [here](https://grakn.ai/pages/documentation/get-started/setup-guide.html) to get started with Grakn.
@@ -19,7 +19,7 @@ You will also need access to a Grakn database. Head [here](https://grakn.ai/page
 Begin by importing the Grakn graph:
 
 ```
->>> var GraknGraph = require('grakn-node');
+>>> var GraknGraph = require('grakn');
 ```
 
 Now you can connect to a graph:
