@@ -2,7 +2,7 @@ const request = require('request-promise-native');
 
 const DEFAULT_URI = 'http://localhost:4567';
 const DEFAULT_KEYSPACE = 'grakn';
-const EXECUTE_WEBPATH = '/graph/graql/execute';
+const EXECUTE_WEBPATH = '/kb/graql/execute';
 
 let uri, keyspace;
 

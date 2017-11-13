@@ -43,7 +43,7 @@ describe('Test query execution', () => {
 
     test('Executing a query sends request to expected URI', () => {
         graph.execute(query);
-        expect(currentRequestOptions.uri).toBe('http://test-url.com/graph/graql/execute');
+        expect(currentRequestOptions.uri).toBe('http://test-url.com/kb/graql/execute');
     });
 
     test('Executing a query sends expected headers', () => {
