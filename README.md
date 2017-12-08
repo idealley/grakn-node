@@ -2,7 +2,7 @@
 
 A Node.js client for [Grakn](https://grakn.ai)
 
-Requires Grakn 0.16.0
+Requires Grakn 0.18.0
 
 # Installation
 
@@ -19,13 +19,13 @@ You will also need access to a Grakn database. Head [here](https://grakn.ai/page
 Begin by importing the Grakn graph:
 
 ```
->>> var GraknGraph = require('grakn');
+>>> const GraknGraph = require('grakn');
 ```
 
 Now you can connect to a graph:
 
 ```
->>> var graph = new GraknGraph('http://localhost:4567', 'keyspace');
+>>> const graph = new GraknGraph('http://localhost:4567', 'keyspace');
 ```
 
 You can write to the graph:
@@ -44,7 +44,9 @@ You can write to the graph:
 Or read from it:
 
 ```
->>> graph.execute('match $bob isa person, has name $name; select $name;').then((resp) => { console.log(resp); });
+>>> graph.execute('match $bob isa person, has name $name; select $name;')
+         .then((resp) => { console.log(resp); })
+         .catch((err) => { console.error(err); });
 [{'name': {'isa': 'name', 'id': '3141816', 'value': 'Bob'}}]
 ```
 
