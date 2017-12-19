@@ -18,17 +18,16 @@ jest.mock('request-promise-native', () => ({
 describe('Test Graph constructor', () => {
     test('Graph initialised with default values', () => {
         let graph = new gc();
-        console.log(graph)
         expect(('execute' in graph)).toBeTruthy();
         expect(graph.keyspace).toBe('grakn');
-        expect(graph.query_endpoint).toBe('/kb/grakn/graql');
+        expect(graph.queryEndpoint).toBe('/kb/grakn/graql');
         expect(graph.uri).toBe('http://localhost:4567');
     });
 
     test('Graph accepts two arguments', () => {
         let graph = new gc('http://www.nasa.gov','nasa');
         expect(graph.keyspace).toBe('nasa');
-        expect(graph.query_endpoint).toBe('/kb/nasa/graql');
+        expect(graph.queryEndpoint).toBe('/kb/nasa/graql');
         expect(graph.uri).toBe('http://www.nasa.gov');
     });
 });
