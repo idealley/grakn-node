@@ -2,7 +2,7 @@
 
 A Node.js client for [Grakn](https://grakn.ai)
 
-Requires Grakn 0.18.0
+Requires Grakn 1.0.0
 
 # Installation
 
