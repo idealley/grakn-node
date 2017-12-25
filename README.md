@@ -19,32 +19,32 @@ You will also need access to a Grakn database. Head [here](https://grakn.ai/page
 Begin by importing the Grakn graph:
 
 ```
->>> const GraknGraph = require('grakn');
+const GraknGraph = require('grakn');
 ```
 
 Now you can connect to a graph:
 
 ```
->>> const graph = new GraknGraph('http://localhost:4567', 'keyspace');
+const graph = new GraknGraph('http://localhost:4567', 'keyspace');
 ```
 
 You can write to the graph:
 
 ```
->>> graph.execute('insert person sub entity;').then((resp) => { console.log(resp); });
+graph.execute('insert person sub entity;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert name sub resource, datatype string;').then((resp) => { console.log(resp); });
+graph.execute('insert name sub resource, datatype string;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert person has name;').then((resp) => { console.log(resp); });
+graph.execute('insert person has name;').then((resp) => { console.log(resp); });
 []
->>> graph.execute('insert $bob isa person, has name "Bob";').then((resp) => { console.log(resp); });
+graph.execute('insert $bob isa person, has name "Bob";').then((resp) => { console.log(resp); });
 ['1234']
 ```
 
 Or read from it:
 
 ```
->>> graph.execute('match $bob isa person, has name $name; select $name;')
+graph.execute('match $bob isa person, has name $name; select $name;')
          .then((resp) => { console.log(resp); })
          .catch((err) => { console.error(err); });
 [{'name': {'isa': 'name', 'id': '3141816', 'value': 'Bob'}}]
