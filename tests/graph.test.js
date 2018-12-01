@@ -67,10 +67,5 @@ describe('Test query execution', () => {
         graph.execute(query);
         expect(currentRequestOptions.qs.infer).toBe(true);
     });
-
-    test('Executing a query sends materialise in params', () => {
-        graph.execute(query);
-        expect(currentRequestOptions.qs.materialise).toBe(false);
-    });
     
 });
